@@ -1,11 +1,7 @@
-// const properties = require("./json/properties.json");
-// const users = require("./json/users.json");
-const { Pool } = require('pg');
-const pool = new Pool({
-  user: 'gautamkhosla',
-  host: 'localhost',
-  database: 'lightbnb'
-});
+const { query } = require('./connection/index.js');
+
+// const { Pool } = require('pg');
+
 // pool.query('SELECT  * from users').then(res => {
 //   console.log(res.rows)
 // })
@@ -140,11 +136,11 @@ const getAllProperties = function (options, limit = 10) {
         keysLits.push(keys);
       }
     }
-
+    // USED ILIKE instead of LIKE to make sure case-senstivity is not an issue
     for (let i = 0; i < keysLits.length - (options.minimum_rating ? 1 : 0); i++) {
       if (keysLits[i] === 'city') {
         queryParams.push(`%${options[keysLits[i]]}%`);
-        queryString += ` city LIKE $${queryParams.length} `;
+        queryString += ` city ILIKE $${queryParams.length} `;
       }
 
       if (keysLits[i] === 'owner_id') {
@@ -204,20 +200,20 @@ const addProperty = function (property) {
 
   const addPropertyQuery = `
   INSERT INTO properties
-  (owner_id,
-  title,
-  description,
-  thumbnail_photo_url,
-  cover_photo_url,
-  cost_per_night,
-  street,
-  city,
-  province,
-  post_code,
-  country,
-  parking_spaces,
-  number_of_bathrooms,
-  number_of_bedrooms)
+  owner_id: int,
+  title: string,
+  description: string,
+  thumbnail_photo_url: string,
+  cover_photo_url: string,
+  cost_per_night: string,
+  street: string,
+  city: string,
+  province: string,
+  post_code: string,
+  country: string,
+  parking_spaces: int,
+  number_of_bathrooms: int,
+  number_of_bedrooms: int
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
   RETURNING *;
   `;
