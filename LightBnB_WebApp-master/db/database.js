@@ -16,16 +16,14 @@ const getUserWithEmail = function (email) {
     .then(res => res.rows[0]);
 };
 
-exports.getUserWithEmail = getUserWithEmail;
+
 
 /**
  * Get a single user from the database given their id.
  * @param {string} id The id of the user.
  * @return {Promise<{}>} A promise to the user.
  */
-// const getUserWithId = function (id) {
-//   return Promise.resolve(users[id]);
-// };
+
 
 const getUserWithId = function (id) {
   const getUserByEmailQuery = `SELECT * FROM users WHERE id = $1;`;
@@ -36,19 +34,14 @@ const getUserWithId = function (id) {
   return query(getUserByEmailQuery, params)
     .then(res => res.rows[0]);
 };
-exports.getUserWithId = getUserWithId;
+
 
 /**
  * Add a new user to the database.
  * @param {{name: string, password: string, email: string}} user
  * @return {Promise<{}>} A promise to the user.
  */
-// const addUser = function (user) {
-//   const userId = Object.keys(users).length + 1;
-//   user.id = userId;
-//   users[userId] = user;
-//   return Promise.resolve(user);
-// };
+
 
 const addUser = function (user) {
   const insertUserQuery = `
@@ -62,7 +55,7 @@ const addUser = function (user) {
   return query(insertUserQuery, idInfo)
     .then(res => res.rows[0]);
 };
-exports.addUser = addUser;
+
 
 /// Reservations
 
@@ -71,9 +64,7 @@ exports.addUser = addUser;
  * @param {string} guest_id The id of the user.
  * @return {Promise<[{}]>} A promise to the reservations.
  */
-// const getAllReservations = function (guest_id, limit = 10) {
-//   return getAllProperties(guest_id, 2);
-// };
+
 const getAllReservations = function (guest_id, limit = 10) {
   const getAllReservationsQuery = `
   SELECT properties.*, reservations.*, ROUND(AVG(rating),2) as average_rating
@@ -93,7 +84,7 @@ const getAllReservations = function (guest_id, limit = 10) {
   return query(getAllReservationsQuery, reqParams)
     .then(res => res.rows);
 };
-exports.getAllReservations = getAllReservations;
+
 
 /// Properties
 
@@ -103,13 +94,7 @@ exports.getAllReservations = getAllReservations;
  * @param {*} limit The number of results to return.
  * @return {Promise<[{}]>}  A promise to the properties.
  */
-// const getAllProperties = function (options, limit = 10) {
-//   const limitedProperties = {};
-//   for (let i = 1; i <= limit; i++) {
-//     limitedProperties[i] = properties[i];
-//   }
-//   return Promise.resolve(limitedProperties);
-// };
+
 
 const getAllProperties = function (options, limit = 10) {
 
@@ -142,12 +127,12 @@ const getAllProperties = function (options, limit = 10) {
       }
 
       if (keysLits[i] === 'minimum_price_per_night') {
-        queryParams.push(`${options[keysLits[i]]}`);
+        queryParams.push(`${options[keysLits[i]] * 100}`);
         queryString += ` cost_per_night > $${queryParams.length} `;
       }
 
       if (keysLits[i] === 'maximum_price_per_night') {
-        queryParams.push(`${options[keysLits[i]]}`);
+        queryParams.push(`${options[keysLits[i]] * 100}`);
         queryString += ` cost_per_night < $${queryParams.length} `;
       }
 
@@ -163,7 +148,7 @@ const getAllProperties = function (options, limit = 10) {
 
   if (options.minimum_rating) {
     queryParams.push(`${options.minimum_rating}`);
-    queryString += ` HAVING avg(property_reviews.rating) > $${queryParams.length} `;
+    queryString += ` HAVING avg(property_reviews.rating) >= $${queryParams.length} `;
   }
 
   queryParams.push(limit);
@@ -174,8 +159,9 @@ const getAllProperties = function (options, limit = 10) {
 
   return query(queryString, queryParams)
     .then(res => res.rows);
+
 };
-exports.getAllProperties = getAllProperties;
+
 
 
 /**
@@ -183,12 +169,7 @@ exports.getAllProperties = getAllProperties;
  * @param {{}} property An object containing all of the property details.
  * @return {Promise<{}>} A promise to the property.
  */
-// const addProperty = function (property) {
-//   const propertyId = Object.keys(properties).length + 1;
-//   property.id = propertyId;
-//   properties[propertyId] = property;
-//   return Promise.resolve(property);
-// };
+
 const addProperty = function (property) {
 
   const addPropertyQuery = `
@@ -229,7 +210,7 @@ const addProperty = function (property) {
   return query(addPropertyQuery, idInfo)
     .then(res => res.rows);
 };
-exports.addProperty = addProperty;
+
 
 
 module.exports = {

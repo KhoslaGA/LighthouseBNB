@@ -89,13 +89,3 @@ npm run start
 schema.sql
 Creates database lightbnb and switches to it.
 
-## Sample Query
-
-getUserByEmail.sql
-
-Selects id, name, email & password of a given user; here 'tristanjacobs@gmail.com'.
-
- id |     name      |          email          |   password
-----+---------------+-------------------------+--------------
-  1 | Devin Sanders | tristanjacobs@gmail.com |  $2a$10$FB...
-(1 row)
