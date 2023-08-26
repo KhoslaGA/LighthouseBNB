@@ -9,8 +9,6 @@ const connectionSettings = {
     port: process.env.PGPORT
 };
 
-console.log(connectionSettings);
-
 const pgClient = new Client(connectionSettings);
 
 // Connect to the database
