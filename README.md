@@ -1,4 +1,7 @@
 # LighthouseBNB project
+
+A database application project developed as a part of Lighthouse Labs Web development course. The front-end is forked from lighthouse-labs/LightBnB_WebApp Install the LightBnB_WebApp npm install, run it npm run local, and view it at localhost:3000.
+
 ## Project Structure
 Setup related files
 docs documentation info
@@ -35,8 +38,64 @@ In LighBnB_WebApp-master
 npm run start
 
 ## screenshot
-![Alt text](LightBnB_WebApp-master/docs/erd.png)
+(LightBnB_WebApp-master/docs/erd.png)
 
 ## demo video 
-![Alt text](LightBnB_WebApp-master/docs/sql_search.gif)
+(LightBnB_WebApp-master/docs/sql_search.gif)
 
+## ERD Info
+* users
+    * id: Primary Key
+    * name
+    * email
+    * password
+* property_types
+    * id: Primary Key
+    * type
+* properties
+    * id: Primary Key
+    * title
+    * description
+    * thumbnail_photo_url
+    * cover_photo_url
+    * owner_id : Foreign Key users(id)
+    * cost_per_night
+    * country
+    * street
+    * city
+    * province
+    * postal_code
+    * parking_spaces
+    * number_of_bedrooms
+    * number_of_washrooms
+    * property_type : Optional, defaults to 1, in future may references property_types(id)
+    * active
+* reservations
+    * id: Primary Key
+    * start_date
+    * end_date
+    * property_id : Foreign Key properties(id)
+    * guset_id : Foreign Key users_id(id)
+* property_reviews
+    * id: Primary Key
+    * guest_id : Foreign Key users(id)
+    * property_id : Foreign Key properties(id)
+    * reservation_id : Foreign Key reservations(id)
+    * message
+    * rating
+
+## Migrations
+
+schema.sql
+Creates database lightbnb and switches to it.
+
+## Sample Query
+
+getUserByEmail.sql
+
+Selects id, name, email & password of a given user; here 'tristanjacobs@gmail.com'.
+
+ id |     name      |          email          |   password
+----+---------------+-------------------------+--------------
+  1 | Devin Sanders | tristanjacobs@gmail.com |  $2a$10$FB...
+(1 row)
