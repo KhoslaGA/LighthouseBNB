@@ -38,7 +38,7 @@ In LighBnB_WebApp-master
 npm run start
 
 ## screenshot
-(LightBnB_WebApp-master/docs/erd.png)
+!['ERD'](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/erd.png)
 
 ## demo video 
  !["Demo video"](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/sql_search.gif)
