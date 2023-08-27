@@ -41,7 +41,7 @@ npm run start
 (LightBnB_WebApp-master/docs/erd.png)
 
 ## demo video 
- ! [](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/sql_search.gif)
+ !["Demo video"](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/sql_search.gif)
 
 ## ERD Info
 * users
