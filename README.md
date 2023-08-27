@@ -41,7 +41,7 @@ npm run start
 (LightBnB_WebApp-master/docs/erd.png)
 
 ## demo video 
-(LightBnB_WebApp-master/docs/sql_search.gif)
+! [](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/sql_search.gif)
 
 ## ERD Info
 * users
@@ -89,3 +89,55 @@ npm run start
 schema.sql
 Creates database lightbnb and switches to it.
 
+## Sample Queries
+getUserByEmail.sql
+Selects id, name, email & password of a given user; here 'tristanjacobs@gmail.com'.
+
+ id |     name      |          email          |   password
+----+---------------+-------------------------+--------------
+  1 | Devin Sanders | tristanjacobs@gmail.com |  $2a$10$FB...
+(1 row)
+averageLengthOfReservations
+
+averageLengthOfReservations.sql
+Selects the average duration of all reservations.
+
+  average_duration   
+---------------------
+ 14.6636000000000000
+(1 row)
+listingsByCity.sql
+Shows all details about properties located in Vancouver including their average rating.
+
+ id  |       title        | cost_per_night |   average_rating   
+-----+--------------------+----------------+--------------------
+ 224 | Nature bite        |          10526 | 4.1000000000000000
+ 197 | Build they         |          34822 | 4.1000000000000000
+  47 | Aside age          |          35421 | 4.2500000000000000
+ 149 | Present television |          53062 | 4.2222222222222222
+(4 rows)
+listingsByCity.sql
+Shows all details about properties located in Vancouver including their average rating.
+
+Selects all columns from the properties table for properties located in Vancouver, and the average rating for each property.
+Orders the results from lowest cost_per_night to highest cost_per_night.
+Limits the number of results to 10.
+Only shows listings that have a rating >= 4 stars.
+mostVisitedCities.sql
+Gets a list of the most visited cities. Selects the name of the city and the number of reservations for that city.
+
+       city        | total_reservations 
+-------------------+--------------------
+ Carcross          |                405
+ Town of Hay River |                379
+ Whitehorse        |                376
+ Town of Inuvik    |                298
+ (251 rows)
+allMyPastReservations.sql
+Shows all past reservations for a user; in this case user with users.id = 1.
+
+Selects all columns from the
+reservations table,
+properties table and the average rating of the property.
+Orders the results from most recentto least recent.
+Limits the results to 10.

@@ -55,4 +55,3 @@ CREATE TABLE property_reviews (
   rating SMALLINT NOT NULL
 );
 
-\dt
