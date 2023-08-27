@@ -37,10 +37,10 @@ queries sample database queries
 In LighBnB_WebApp-master
 npm run start
 
-## screenshot
+## ERD Diagram
 !["ERD"](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/erd.png)
 
-## demo video 
+## Demo Video 
  !["Demo video"](https://github.com/KhoslaGA/LighthouseBNB/blob/main/LightBnB_WebApp-master/docs/sql_search.gif)
 
 ## ERD Info
